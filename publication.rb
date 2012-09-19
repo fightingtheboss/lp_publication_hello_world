@@ -102,14 +102,14 @@ post '/validate_config/' do
   # Extract config from POST
   user_settings = JSON.parse(params[:config])
 
-  # If the user did choose a language:
-  if user_settings['lang'].nil? || user_settings['lang']==""
+  # If the user did not choose a language:
+  if user_settings['lang'].blank?
     response[:valid] = false
     response[:errors].push('Please select a language from the select box.')
   end
   
   # If the user did not fill in the name option:
-  if user_settings['name'].nil? || user_settings['name']==""
+  if user_settings['name'].blank?
     response[:valid] = false
     response[:errors].push('Please enter your name into the name box.')
   end
